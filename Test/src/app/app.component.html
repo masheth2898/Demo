@@ -1,25 +1,16 @@
-<h1>{{ pageHeader }}</h1>
-
-<img [src]='imageUrl' alt='Image' />
-
+<h1>Parent Component</h1>
 <div>
-  <button (click)="clickEvent()">Click Me!</button>
-  <p>Button clicked {{count}} times.</p>
+  <button (click)='userLoggedIn = true'>LogIn</button>
+  <button (click) ='userLoggedIn = false'>Logout</button>
 </div>
-<div>
-  <p>Two way binding</p>
-  <input #nameRef type="text" [(ngModel)] = "name">
-  <p> Welcome {{name}}</p>
-</div>
+<app-child #child [loggedIn] = 'userLoggedIn' (greetEvent)='greetUser($event)'></app-child>
+<p>
+ Child component property:  {{child.name}}
+</p>
+<button (click) ="child.greetUser()"> Greet </button>
 
+<p>Component Interaction with Service</p>
 <div>
-  <p>Split two way binding</p>
-  <input type="text" [ngModel] = "userName" (ngModelChange)='greetUser($event)'>
-  <p> Welcome {{userName}}</p>
-</div>
-
-<div>
-  <p>Two way binding using Getter and setter</p>
-  <input type="text" [(ngModel)] = "customerName">
-  <p> Welcome {{customerName}}</p>
+  <button (click)='greetStudents()'>Greet Students</button>
+  <button (click) ='appriciateStudents()'>Appriciate Students</button>
 </div>
